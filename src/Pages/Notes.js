@@ -1,8 +1,9 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 function Notes() {
   const [title, setTitle] = useState("");
-  const [note, setNote] = useState("");
+  const [noteText, setNoteText] = useState("");
 
   const handleOnFormSubmit = (e) => {
     e.preventDefault();

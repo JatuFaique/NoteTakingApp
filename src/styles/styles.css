@@ -117,3 +117,14 @@
 .btn_submit {
   align-self: flex-end;
 }
+
+/* section login  */
+
+.section__login {
+  margin-top: 8rem;
+  margin-left: 19rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
