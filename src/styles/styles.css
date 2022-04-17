@@ -1,0 +1,119 @@
+@import url("https://the-office-ui.netlify.app/components/components.css");
+@import url(./padding.css);
+
+:root {
+  --space-0-125: 0.125rem;
+  --space-0-25: 0.25rem;
+  --space-0-3: 0.3rem;
+  --space-0-5: 0.5rem;
+  --space-0-6: 0.65rem;
+  --space-0-75: 0.75rem;
+  --space-0-85: 0.85rem;
+  --space-1: 1rem;
+  --space-1-25: 1.25rem;
+  --space-1-5: 1.5rem;
+  --space-1-75: 1.75rem;
+  --space-2: 2rem;
+  --space-2-25: 2.25rem;
+  --space-2-5: 2.5rem;
+  --space-2-75: 2.75rem;
+  --space-3: 3rem;
+  --space-4: 4rem;
+}
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  margin-left: 5em;
+  margin-top: 7em;
+  overflow-y: auto;
+}
+
+.nav-main-heading {
+  font-size: 1rem;
+  padding: 0.2em 0.5em;
+  border-radius: 0.3em;
+  display: block;
+  width: 100%;
+  color: #626364;
+  font-weight: 500;
+  margin-top: 0.6em;
+}
+
+.nav-sub-heading {
+  font-size: 1.07rem;
+  padding: 0.2em 0.5em;
+  border-radius: 0.3em;
+  display: block;
+  width: 93%;
+  color: #585a5c;
+  margin-top: 0.3em;
+  margin-left: 0.5em;
+}
+
+.nav-sub-heading:hover {
+  background-color: var(--fulvous-light);
+}
+
+.nav-sub-heading > a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: #585a5c;
+}
+
+.nav-sub-heading:hover > a {
+  color: #232425;
+}
+
+.nav-comp-section {
+  margin-top: 0.5em;
+  padding-left: 0.5em;
+}
+
+.component-links {
+  list-style: none;
+  margin-bottom: 0.5em;
+  font-size: 1rem;
+  border-radius: 0.4em;
+}
+
+/* home page  */
+
+.section__homePage {
+  margin-top: 8rem;
+  margin-left: 19rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.section__notes {
+  margin-top: 8rem;
+  margin-left: 19rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.notes__heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.notes__input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+}
+
+.btn_submit {
+  align-self: flex-end;
+}
