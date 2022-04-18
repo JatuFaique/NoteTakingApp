@@ -5,6 +5,7 @@ import NoteCard from "../components/NoteCard";
 function Notes() {
   const [title, setTitle] = useState("");
   const [noteText, setNoteText] = useState("");
+  const [color, setColor] = useState("white");
   const [note, setNote] = useState([]);
   const [userNotes, setUserNotes] = useState([]);
   const [tags, setTags] = useState([]);
@@ -19,8 +20,9 @@ function Notes() {
       noteText: noteText,
       date: dateTime,
       tags: tags,
+      color: color,
     });
-  }, [noteText, title, tags]);
+  }, [noteText, title, tags, color]);
 
   const handleOnFormSubmit = (e) => {
     e.preventDefault();
@@ -88,6 +90,10 @@ function Notes() {
     }
   };
 
+  const handlecolor = (e) => {
+    setColor(e.target.value);
+  };
+
   return (
     <div className="section__notes">
       <div className="notes__heading">
@@ -116,12 +122,53 @@ function Notes() {
               setNoteText(e.target.value);
             }}
           ></textarea>
-          <label>Home</label>
-          <input type="checkbox" name="Home" onChange={handleTags}></input>
-          <label>office</label>
-          <input type="checkbox" name="Office" onChange={handleTags}></input>
-          <label>School</label>
-          <input type="checkbox" name="School" onChange={handleTags}></input>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <label>Home</label>
+            <input type="checkbox" name="Home" onChange={handleTags}></input>
+            <label>office</label>
+            <input type="checkbox" name="Office" onChange={handleTags}></input>
+            <label>School</label>
+            <input type="checkbox" name="School" onChange={handleTags}></input>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <label>Blue</label>
+            <input
+              type="radio"
+              id="color"
+              name="color"
+              value="blue"
+              onChange={handlecolor}
+            ></input>
+            <label>Red</label>
+            <input
+              type="radio"
+              id="color"
+              name="color"
+              value="red"
+              onChange={handlecolor}
+            ></input>
+            <label>Green</label>
+            <input
+              type="radio"
+              id="color"
+              name="color"
+              value="green"
+              onChange={handlecolor}
+            ></input>
+          </div>
+
           <button className="btn_submit btn-prim" type="submit">
             {" "}
             Create

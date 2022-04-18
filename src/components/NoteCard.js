@@ -73,7 +73,7 @@ function NoteCard({ data, setNotesUpdates, notesUpdated, isArchived }) {
     <div
       className="note__card p-0-5"
       style={{
-        backgroundColor: "#ffffff",
+        backgroundColor: data.color,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",

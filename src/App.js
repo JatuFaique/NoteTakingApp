@@ -14,11 +14,9 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />}></Route>
         <Route path="/notes" element={<Notes />} />
         <Route path="/archives" element={<Archives />} />
-
-        {/* <Route path="/mockman" element={<MockMan />} /> */}
       </Routes>
 
       {/* <HomePage /> */}

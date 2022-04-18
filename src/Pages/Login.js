@@ -33,6 +33,8 @@ function Login() {
       <main class="auth-container">
         <div class="auth-box">
           <div class="text-m text-center">Please Sign In</div>
+          <div>Enter Test UserName : adarshbalika@gmail.com</div>
+          <div>Enter Test Password : adarshBalika123</div>
           <section class="input-box disp-flex">
             <div class="input-field">
               <input

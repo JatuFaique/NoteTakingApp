@@ -135,7 +135,6 @@
   display: flex;
   flex-direction: row;
   gap: var(--space-0-85);
-  border: 1px solid black;
   width: 100%;
 }
 
