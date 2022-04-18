@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 
-function NoteCard({ data, setNotesUpdates }) {
+function NoteCard({ data, setNotesUpdates, notesUpdated }) {
   const handleDelete = async () => {
     try {
       const res = await axios.delete(`/api/notes/${data._id}`, {
@@ -9,8 +9,28 @@ function NoteCard({ data, setNotesUpdates }) {
           authorization: localStorage.getItem("token"),
         },
       });
+      //   console.log(res.data);
+      setNotesUpdates(!notesUpdated);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleArchive = async () => {
+    try {
+      const res = await axios.post(
+        `/api/notes/archives/${data._id}`,
+        {
+          data,
+        },
+        {
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        }
+      );
       console.log(res.data);
-      setNotesUpdates(true);
+      setNotesUpdates(!notesUpdated);
     } catch (err) {
       console.log(err);
     }
@@ -30,7 +50,11 @@ function NoteCard({ data, setNotesUpdates }) {
         <div class="text-m ">{data.title}</div>
         <div class="text-sm">{data.noteText}</div>
       </div>
-      <div class="text-sm text-grey ">Tags: Home , Office , Self</div>
+      <div class="text-sm text-grey ">
+        <button className="btn-secd" onClick={handleArchive}>
+          Archive
+        </button>
+      </div>
       <div>
         <i class="fa-solid fa-trash delete-icon" onClick={handleDelete}>
           X

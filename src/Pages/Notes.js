@@ -130,7 +130,13 @@ function Notes() {
       </div>
       <div className="section__notes_cards">
         {userNotes.map((note) => {
-          return <NoteCard data={note} setNotesUpdates={setNotesUpdates} />;
+          return (
+            <NoteCard
+              data={note}
+              setNotesUpdates={setNotesUpdates}
+              notesUpdated={notesUpdated}
+            />
+          );
         })}
       </div>
     </div>
