@@ -6,6 +6,7 @@ import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
 import Notes from "./Pages/Notes";
 import "./styles/styles.css";
+import Archives from "./Pages/Archives";
 
 export default function App() {
   return (
@@ -15,6 +16,8 @@ export default function App() {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/notes" element={<Notes />} />
+        <Route path="/archives" element={<Archives />} />
+
         {/* <Route path="/mockman" element={<MockMan />} /> */}
       </Routes>
 
