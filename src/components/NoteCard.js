@@ -1,38 +1,72 @@
 import axios from "axios";
 import React from "react";
 
-function NoteCard({ data, setNotesUpdates, notesUpdated }) {
+function NoteCard({ data, setNotesUpdates, notesUpdated, isArchived }) {
   const handleDelete = async () => {
-    try {
-      const res = await axios.delete(`/api/notes/${data._id}`, {
-        headers: {
-          authorization: localStorage.getItem("token"),
-        },
-      });
-      //   console.log(res.data);
-      setNotesUpdates(!notesUpdated);
-    } catch (err) {
-      console.log(err);
+    if (isArchived) {
+      try {
+        const res = await axios.delete(`/api/archives/delete/${data._id}`, {
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        });
+        //   console.log(res.data);
+        setNotesUpdates(!notesUpdated);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      try {
+        const res = await axios.delete(`/api/notes/${data._id}`, {
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        });
+        //   console.log(res.data);
+        setNotesUpdates(!notesUpdated);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
   const handleArchive = async () => {
-    try {
-      const res = await axios.post(
-        `/api/notes/archives/${data._id}`,
-        {
-          data,
-        },
-        {
-          headers: {
-            authorization: localStorage.getItem("token"),
+    if (isArchived) {
+      try {
+        const res = await axios.post(
+          `/api/archives/restore/${data._id}`,
+          {
+            data,
           },
-        }
-      );
-      console.log(res.data);
-      setNotesUpdates(!notesUpdated);
-    } catch (err) {
-      console.log(err);
+          {
+            headers: {
+              authorization: localStorage.getItem("token"),
+            },
+          }
+        );
+        console.log(res.data);
+        setNotesUpdates(!notesUpdated);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      try {
+        const res = await axios.post(
+          `/api/notes/archives/${data._id}`,
+          {
+            data,
+          },
+          {
+            headers: {
+              authorization: localStorage.getItem("token"),
+            },
+          }
+        );
+        console.log(res.data);
+        setNotesUpdates(!notesUpdated);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
   return (
@@ -51,10 +85,13 @@ function NoteCard({ data, setNotesUpdates, notesUpdated }) {
         <div class="text-sm">{data.noteText}</div>
       </div>
       <div class="text-sm text-grey ">
-        <button className="btn-secd" onClick={handleArchive}>
-          Archive
-        </button>
+        {data.tags.map((tag) => {
+          return <span>{tag} ,</span>;
+        })}
       </div>
+      <button className="btn-secd" onClick={handleArchive}>
+        {isArchived ? "Restore" : "Archive"}
+      </button>
       <div>
         <i class="fa-solid fa-trash delete-icon" onClick={handleDelete}>
           X
