@@ -15,6 +15,7 @@ export default function App() {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/notes" element={<Notes />} />
+        {/* <Route path="/mockman" element={<MockMan />} /> */}
       </Routes>
 
       {/* <HomePage /> */}

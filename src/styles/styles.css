@@ -128,3 +128,27 @@
   align-items: center;
   align-content: center;
 }
+
+/* section notes */
+
+.section__notes_cards {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-0-85);
+  border: 1px solid black;
+  width: 100%;
+}
+
+.note__card {
+  flex: 1 0 22rem;
+  min-height: 12rem;
+  max-width: 22rem;
+  border: 1px dashed black;
+  justify-content: space-between;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+}
