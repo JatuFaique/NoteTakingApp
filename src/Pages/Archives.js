@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import NoteCard from "../components/NoteCard";
 
 function Archives() {
