@@ -95,96 +95,112 @@ function Notes() {
   };
 
   return (
-    <div className="section__notes">
-      <div className="notes__heading">
-        <h1 className="p-1">Note</h1>
-        <h3 className="p-1">Create your notes here!</h3>
-      </div>
-      <div className="section__notes__input">
-        <form
-          className="notes__input"
-          onSubmit={(e) => {
-            handleOnFormSubmit(e);
-          }}
-        >
-          <input
-            type="text"
-            placeholder="Enter title"
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          ></input>
-          <textarea
-            rows="5"
-            cols="60"
-            name="description"
-            onChange={(e) => {
-              setNoteText(e.target.value);
-            }}
-          ></textarea>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-evenly",
+    <div className="contentbar">
+      <div className="section__notes">
+        <div className="homePage__intro">
+          Get Started with notes app
+          <h3 className="">
+            Your notes taking app, has features such as Archive, Labels
+          </h3>
+        </div>
+        <div className="notes__heading">
+          <h1 className="p-1">Note</h1>
+          <h3 className="p-1">Create your notes here!</h3>
+        </div>
+        <div className="section__notes__input">
+          <form
+            className="notes__input"
+            onSubmit={(e) => {
+              handleOnFormSubmit(e);
             }}
           >
-            <label>Home</label>
-            <input type="checkbox" name="Home" onChange={handleTags}></input>
-            <label>office</label>
-            <input type="checkbox" name="Office" onChange={handleTags}></input>
-            <label>School</label>
-            <input type="checkbox" name="School" onChange={handleTags}></input>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <label>Blue</label>
             <input
-              type="radio"
-              id="color"
-              name="color"
-              value="blue"
-              onChange={handlecolor}
+              type="text"
+              placeholder="Enter title"
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
             ></input>
-            <label>Red</label>
-            <input
-              type="radio"
-              id="color"
-              name="color"
-              value="red"
-              onChange={handlecolor}
-            ></input>
-            <label>Green</label>
-            <input
-              type="radio"
-              id="color"
-              name="color"
-              value="green"
-              onChange={handlecolor}
-            ></input>
-          </div>
+            <textarea
+              rows="5"
+              cols="60"
+              name="description"
+              onChange={(e) => {
+                setNoteText(e.target.value);
+              }}
+            ></textarea>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+              }}
+            >
+              <label>Home</label>
+              <input type="checkbox" name="Home" onChange={handleTags}></input>
+              <label>office</label>
+              <input
+                type="checkbox"
+                name="Office"
+                onChange={handleTags}
+              ></input>
+              <label>School</label>
+              <input
+                type="checkbox"
+                name="School"
+                onChange={handleTags}
+              ></input>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+              }}
+            >
+              <label>Blue</label>
+              <input
+                type="radio"
+                id="color"
+                name="color"
+                value="blue"
+                onChange={handlecolor}
+              ></input>
+              <label>Red</label>
+              <input
+                type="radio"
+                id="color"
+                name="color"
+                value="red"
+                onChange={handlecolor}
+              ></input>
+              <label>Green</label>
+              <input
+                type="radio"
+                id="color"
+                name="color"
+                value="green"
+                onChange={handlecolor}
+              ></input>
+            </div>
 
-          <button className="btn_submit btn-prim" type="submit">
-            {" "}
-            Create
-          </button>
-        </form>
-      </div>
-      <div className="section__notes_cards">
-        {userNotes.map((note) => {
-          return (
-            <NoteCard
-              data={note}
-              setNotesUpdates={setNotesUpdates}
-              notesUpdated={notesUpdated}
-            />
-          );
-        })}
+            <button className="btn_submit btn-prim" type="submit">
+              {" "}
+              Create
+            </button>
+          </form>
+        </div>
+        <div className="cards">
+          {userNotes.map((note) => {
+            return (
+              <NoteCard
+                data={note}
+                setNotesUpdates={setNotesUpdates}
+                notesUpdated={notesUpdated}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

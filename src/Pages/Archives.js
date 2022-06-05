@@ -28,19 +28,21 @@ function Archives() {
   }, [notesUpdated]);
 
   return (
-    <div className="section__notes">
-      <div className="notes__heading">Archives</div>
-      <div className="section__notes_cards">
-        {userArchives.map((item) => {
-          return (
-            <NoteCard
-              data={item}
-              isArchived={true}
-              setNotesUpdates={setNotesUpdates}
-              notesUpdated={notesUpdated}
-            />
-          );
-        })}
+    <div className="contentbar">
+      <div className="section__notes">
+        <div className="notes__heading">Archives</div>
+        <div className="section__notes_cards">
+          {userArchives.map((item) => {
+            return (
+              <NoteCard
+                data={item}
+                isArchived={true}
+                setNotesUpdates={setNotesUpdates}
+                notesUpdated={notesUpdated}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

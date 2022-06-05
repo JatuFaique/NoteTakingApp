@@ -10,13 +10,12 @@ import Archives from "./Pages/Archives";
 
 export default function App() {
   return (
-    <div>
-      <Navbar />
+    <div className="main__container">
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<HomePage />}></Route>
-        <Route path="/notes" element={<Notes />} />
-        <Route path="/archives" element={<Archives />} />
+        <Route path="/home" element={[<Navbar />, <HomePage />]}></Route>
+        <Route path="/notes" element={[<Navbar />, <Notes />]} />
+        <Route path="/archives" element={[<Navbar />, <Archives />]} />
       </Routes>
 
       {/* <HomePage /> */}

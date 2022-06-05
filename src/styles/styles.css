@@ -21,64 +21,6 @@
   --space-4: 4rem;
 }
 
-.site-nav {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  margin-left: 5em;
-  margin-top: 7em;
-  overflow-y: auto;
-}
-
-.nav-main-heading {
-  font-size: 1rem;
-  padding: 0.2em 0.5em;
-  border-radius: 0.3em;
-  display: block;
-  width: 100%;
-  color: #626364;
-  font-weight: 500;
-  margin-top: 0.6em;
-}
-
-.nav-sub-heading {
-  font-size: 1.07rem;
-  padding: 0.2em 0.5em;
-  border-radius: 0.3em;
-  display: block;
-  width: 93%;
-  color: #585a5c;
-  margin-top: 0.3em;
-  margin-left: 0.5em;
-}
-
-.nav-sub-heading:hover {
-  background-color: var(--fulvous-light);
-}
-
-.nav-sub-heading > a {
-  display: block;
-  width: 100%;
-  text-decoration: none;
-  color: #585a5c;
-}
-
-.nav-sub-heading:hover > a {
-  color: #232425;
-}
-
-.nav-comp-section {
-  margin-top: 0.5em;
-  padding-left: 0.5em;
-}
-
-.component-links {
-  list-style: none;
-  margin-bottom: 0.5em;
-  font-size: 1rem;
-  border-radius: 0.4em;
-}
-
 /* home page  */
 
 .section__homePage {
@@ -92,7 +34,7 @@
 
 .section__notes {
   margin-top: 8rem;
-  margin-left: 19rem;
+  /* margin-left: 19rem; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -118,36 +60,94 @@
   align-self: flex-end;
 }
 
-/* section login  */
-
-.section__login {
-  margin-top: 8rem;
-  margin-left: 19rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
 /* section notes */
 
-.section__notes_cards {
+/* AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+picture,
+figure {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+
+i {
+  font-size: inherit;
+  padding-right: 0.75em;
+  padding-left: 0.75em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  line-height: 1.5;
+  min-height: 100vh;
+  font-size: 1rem;
+  background-color: #ececec;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* form elements */
+
+input,
+textarea,
+button,
+select {
+  font: inherit;
+  font-size: inherit;
+}
+
+body {
+  line-height: 1.5;
+  min-height: 100vh;
+  font-size: 1rem;
+  background-color: #ececec;
+}
+
+.box {
+  border: 1px solid black;
+  /* height: 100vh; */
+}
+
+.main__container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.contentbar {
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.cards {
+  padding: 1rem 1rem 1rem 8rem;
+  width: 100%;
+  /* justify-content: center; */
   display: flex;
   flex-direction: row;
-  gap: var(--space-0-85);
-  width: 100%;
-}
-
-.note__card {
-  flex: 1 0 22rem;
-  min-height: 12rem;
-  max-width: 22rem;
-  border: 1px dashed black;
-  justify-content: space-between;
-}
-
-.delete-icon {
-  position: absolute;
-  top: 18px;
-  right: 16px;
+  flex-wrap: wrap;
+  gap: 6px;
 }

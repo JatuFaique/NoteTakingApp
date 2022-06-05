@@ -1,0 +1,69 @@
+.login__container {
+  border: 1px solid black;
+  height: 100vh;
+  grid-column: 1 / -1;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.left__wrap {
+  grid-column: 1 / 5;
+}
+
+.left__wrap {
+  background-color: var(--colorPrimary);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.left__wrap h1 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 4.3rem;
+}
+
+.right__wrap {
+  background-color: #ffffff;
+  display: flex;
+  grid-column: 5 / -1;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-container {
+  background-color: #ececec;
+  position: relative;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-box input {
+  min-width: 100%;
+}
+.auth-box {
+  display: flex;
+  padding: 1rem;
+  min-width: none;
+  background-color: #ffffff;
+  flex-direction: column;
+  /* transform: translate(-2%, -50%); */
+  gap: 1rem;
+  min-width: 500px;
+  border-radius: 25px;
+}

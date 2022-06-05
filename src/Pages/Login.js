@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Login.css";
 import { useAuth } from "../Context/Authcontext";
 
 function Login() {
@@ -24,49 +25,82 @@ function Login() {
     }
     setIsError("");
   };
+
   const test = {
     email: "adarshbalika@gmail.com",
     password: "adarshBalika123",
   };
+
+  const useDemoValues = () => {
+    setLogin({
+      ...login,
+      email: test.email,
+      password: test.password,
+    });
+  };
+
   return (
-    <div className="section__login">
-      <main class="auth-container">
-        <div class="auth-box">
-          <div class="text-m text-center">Please Sign In</div>
-          <div>Enter Test UserName : adarshbalika@gmail.com</div>
-          <div>Enter Test Password : adarshBalika123</div>
-          <section class="input-box disp-flex">
-            <div class="input-field">
-              <input
-                name="email"
-                id="email-field"
-                type="email"
-                onChange={handleData}
-              />
-              <label for="email-field" class="placeholder"></label>
+    <div class="login__container logincomponent">
+      <div class="wrapper">
+        <div class="left__wrap">
+          <main class="auth-container">
+            <div class="auth-box p-1">
+              <p>Please Sign in</p>
+              <form class="userForm">
+                <section class="input-box">
+                  <div class="input-field">
+                    <input
+                      name="email"
+                      value={login.email}
+                      id="email-field"
+                      type="text"
+                      pattern=".*\S.*"
+                      onChange={handleData}
+                      required
+                    />
+                    <label for="email-field" class="placeholder">
+                      Enter Email
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <div class="input-field">
+                    <input
+                      id="email-field"
+                      name="password"
+                      type="text"
+                      pattern=".*\S.*"
+                      value={login.password}
+                      required
+                      onChange={handleData}
+                    />
+                    <label for="password-field" class="placeholder">
+                      Password
+                    </label>
+                  </div>
+                </section>
+                <button class="btn-prim" type="submit" onClick={useDemoValues}>
+                  User Demo Cred
+                </button>
+                <button class="btn-prim" type="submit" onClick={loginHandler}>
+                  Sign In
+                </button>
+              </form>
+              <button class="btn-secd" onClick="{signUpToggle}">
+                Create a New Account
+              </button>
             </div>
-          </section>
-          <section>
-            <div class="input-field">
-              <input
-                name="password"
-                id="password-field"
-                type="password"
-                onChange={handleData}
-              />
-              <label for="password-field"></label>
-            </div>
-          </section>
-          <button
-            class="btn-prim"
-            onClick={(e) => {
-              loginHandler(e);
-            }}
-          >
-            Sign In
-          </button>
+          </main>
         </div>
-      </main>
+        <div class="right__wrap">
+          <h1>Get Your Important Stuff Done!</h1>
+          <img
+            src="https://i.ibb.co/LRYrWYz/undraw-Taking-notes-re-bnaf.png"
+            alt="undraw-Taking-notes-re-bnaf"
+          />
+          <h3>Get Your Important Stuff Done!</h3>
+        </div>
+      </div>
     </div>
   );
 }

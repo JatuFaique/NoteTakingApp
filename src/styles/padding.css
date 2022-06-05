@@ -1,4 +1,4 @@
-.p-0-25 {
+/* .p-0-25 {
   padding: var(--space-0-25);
 }
 
@@ -56,11 +56,11 @@
 
 .p-4 {
   padding: var(--space-4);
-}
+} */
 
 /* padding x */
 
-.px-0-125 {
+/* .px-0-125 {
   padding-left: var(--space-0-125);
   padding-right: var(--space-0-125);
 }
@@ -113,11 +113,11 @@
 .px-3 {
   padding-right: var(--space-3);
   padding-left: var(--space-3);
-}
+} */
 
 /* padding y */
 
-.py-0-125 {
+/* .py-0-125 {
   padding-top: var(--space-0-125);
   padding-bottom: var(--space-0-125);
 }
@@ -155,4 +155,4 @@
 .py-1 {
   padding-top: var(--space-1);
   padding-bottom: var(--space-1);
-}
+} */
