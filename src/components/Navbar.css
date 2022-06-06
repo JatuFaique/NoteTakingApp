@@ -57,7 +57,11 @@
   border-radius: 0.4em;
 }
 
-.list-stacked > .list-heading {
+.list-stacked .list-heading {
   background-color: var(--fulvous);
   color: #ffffff;
+}
+
+.addAct {
+  color: var(--fulvous);
 }

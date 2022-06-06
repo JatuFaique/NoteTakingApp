@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
@@ -7,19 +7,41 @@ function Navbar() {
   return (
     <div class="navbar">
       <nav class="site-nav">
-        <div class="nav-main-heading">Components</div>
+        <div class="nav-main-heading"></div>
         <ul class="list list-stacked nav-comp-section">
-          <li class="component-links list-heading">
-            <div class="nav-main-heading ">Notes</div>
+          <li className="component-links list-heading">Hello user</li>
+          <li className="component-links ">
+            <NavLink
+              className={({ isActive }) => (isActive ? "addAct" : "")}
+              to="/notes"
+            >
+              <div class="nav-main-heading ">Notes</div>
+            </NavLink>
+          </li>
+
+          <li class="component-links">
+            <NavLink
+              to="/trash"
+              className={({ isActive }) => (isActive ? "addAct" : "")}
+            >
+              <div class="nav-main-heading">Trash</div>
+            </NavLink>
           </li>
           <li class="component-links">
-            <div class="nav-main-heading">Trash</div>
+            <NavLink
+              to="/labels"
+              className={({ isActive }) => (isActive ? "addAct" : "")}
+            >
+              <div class="nav-main-heading">Labels</div>
+            </NavLink>
           </li>
           <li class="component-links">
-            <div class="nav-main-heading">Labels</div>
-          </li>
-          <li class="component-links">
-            <div class="nav-main-heading">Archived</div>
+            <NavLink
+              to="/archives"
+              className={({ isActive }) => (isActive ? "addAct" : "")}
+            >
+              <div class="nav-main-heading">Archived</div>
+            </NavLink>
           </li>
         </ul>
       </nav>

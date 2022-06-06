@@ -7,6 +7,8 @@ import Login from "./Pages/Login";
 import Notes from "./Pages/Notes";
 import "./styles/styles.css";
 import Archives from "./Pages/Archives";
+import Trash from "./Pages/Trash";
+import Labels from "./Pages/Labels";
 
 export default function App() {
   return (
@@ -15,7 +17,9 @@ export default function App() {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={[<Navbar />, <HomePage />]}></Route>
         <Route path="/notes" element={[<Navbar />, <Notes />]} />
+        <Route path="/labels" element={[<Navbar />, <Labels />]} />
         <Route path="/archives" element={[<Navbar />, <Archives />]} />
+        <Route path="/trash" element={[<Navbar />, <Trash />]} />
       </Routes>
 
       {/* <HomePage /> */}

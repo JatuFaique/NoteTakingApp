@@ -1,60 +1,47 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNotes } from "../Context/Notescontext";
 import NoteCard from "../components/NoteCard";
 
 function Notes() {
+  const [notesState, notesDispatch] = useNotes();
   const [title, setTitle] = useState("");
   const [noteText, setNoteText] = useState("");
   const [color, setColor] = useState("white");
-  const [note, setNote] = useState([]);
-  const [userNotes, setUserNotes] = useState([]);
   const [tags, setTags] = useState([]);
-  const [notesUpdated, setNotesUpdates] = useState(false);
   var today = new Date();
   var date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
   var dateTime = date;
-  useEffect(() => {
-    setNote({
-      title: title,
-      noteText: noteText,
-      date: dateTime,
-      tags: tags,
-      color: color,
-    });
-  }, [noteText, title, tags, color]);
 
   const handleOnFormSubmit = (e) => {
     e.preventDefault();
+    let note = {
+      title,
+      noteText,
+      date: dateTime,
+      tags,
+      color,
+    };
 
-    // const getNote = { title, noteText };
-    // setNote({
-    //   title: title,
-    //   noteText: noteText,
-    // });
-
+    console.log("hi", note);
     handlePost(note);
+    //reset all fields
+
+    setNoteText("");
+    setTitle("");
   };
 
-  useEffect(() => {
-    handleGet();
-  }, [notesUpdated]);
-
-  const handleGet = async () => {
-    try {
-      const res = await axios.get("/api/notes", {
-        headers: {
-          authorization: localStorage.getItem("token"),
-        },
-      });
-      setUserNotes(res.data.notes);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // useEffect(() => {
+  //   handleGet();
+  // }, [notesUpdated]);
 
   const handlePost = async (note) => {
     try {
+      notesDispatch({
+        type: "REQUEST_ADD_TO_NOTES",
+      });
+
       const encT = localStorage.getItem("token");
       console.log(encT);
       const res = await axios.post(
@@ -66,16 +53,23 @@ function Notes() {
           },
         }
       );
-      console.log(res.data);
-      setUserNotes(res.data.notes);
-      return res.data.notes;
-      //console.log(res.data);
+      if (res.status === 200 || res.status === 201) {
+        console.log("resp = ", res.data);
+        notesDispatch({
+          type: "SUCCESS_ADD_TO_NOTES",
+          payload: res.data.notes,
+        });
+      }
+      // console.log(res.data);
+      // setUserNotes(res.data.notes);
+      // return res.data.notes;
+      // //console.log(res.data);
     } catch (err) {
-      console.log(err);
+      cartDispatch({
+        type: "FAILED_ADD_TO_NOTES",
+      });
     }
   };
-
-  const bgcolor = "#bcbcbc";
 
   const handleTags = (e) => {
     console.log("hi", e.target.name);
@@ -117,6 +111,7 @@ function Notes() {
             <input
               type="text"
               placeholder="Enter title"
+              value={title}
               onChange={(e) => {
                 setTitle(e.target.value);
               }}
@@ -125,6 +120,7 @@ function Notes() {
               rows="5"
               cols="60"
               name="description"
+              value={noteText}
               onChange={(e) => {
                 setNoteText(e.target.value);
               }}
@@ -191,14 +187,8 @@ function Notes() {
           </form>
         </div>
         <div className="cards">
-          {userNotes.map((note) => {
-            return (
-              <NoteCard
-                data={note}
-                setNotesUpdates={setNotesUpdates}
-                notesUpdated={notesUpdated}
-              />
-            );
+          {notesState.notes.map((note) => {
+            return <NoteCard data={note} />;
           })}
         </div>
       </div>

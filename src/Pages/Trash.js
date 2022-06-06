@@ -4,16 +4,18 @@ import { useEffect, useState } from "react";
 import NoteCard from "../components/NoteCard";
 import { useNotes } from "../Context/Notescontext";
 
-function Archives() {
+function Trash() {
   const [notesState, notesDispatch] = useNotes();
+
+  console.log(notesState.trash);
 
   return (
     <div className="contentbar">
       <div className="section__notes">
-        <div className="notes__heading">Archives</div>
+        <div className="notes__heading">Trash</div>
         <div className="cards section__notes_cards">
-          {notesState.archives.map((item) => {
-            return <NoteCard data={item} isArchived={true} />;
+          {notesState.trash.map((item) => {
+            return <NoteCard data={item} isTrashed={true} />;
           })}
         </div>
       </div>
@@ -21,4 +23,4 @@ function Archives() {
   );
 }
 
-export default Archives;
+export default Trash;

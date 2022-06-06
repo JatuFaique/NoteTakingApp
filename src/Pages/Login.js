@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./Login.css";
 import { useAuth } from "../Context/Authcontext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [authState, authDispatch] = useAuth();
   const [showSignUp, setShowSignUp] = useState(false);
   const [isError, setIsError] = useState("");
@@ -35,10 +37,11 @@ function Login() {
           payload: userInfo,
         });
         console.log("uiui", userInfo);
-        // navigate("/");
+        navigate("/notes");
       }
     } catch (error) {
       console.log(error);
+      setIsError(error.response.data.errors);
     }
   };
 
@@ -52,6 +55,7 @@ function Login() {
       });
       console.log("ii", res.data);
       if (res.status == 200 || res.status == 201) {
+        console.log("passed");
         localStorage.setItem("token", res.data.encodedToken);
         const token = localStorage.getItem("token");
         const userInfo = { email, token };
@@ -59,10 +63,11 @@ function Login() {
           type: "SUCCESS_LOGIN",
           payload: userInfo,
         });
-        // navigate("/notes");
+        console.log("passed2");
+        navigate("/notes");
       }
     } catch (error) {
-      // console.log(error.response);
+      console.log(error.response);
       setIsError(error.response.data.errors);
     }
   };
