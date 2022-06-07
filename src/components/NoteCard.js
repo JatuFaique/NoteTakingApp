@@ -193,13 +193,17 @@ function NoteCard({ data, isArchived, isTrashed }) {
   };
 
   return (
-    <div class="card card-vertical">
+    <div class={`card card-vertical ${data.color} `}>
       <div class="card-content">
         <div class="card-header">
           <h4>{data.title}</h4>
           <h5>{data.date}</h5>
         </div>
         <div class="card-text">
+          <p>
+            <span>Priority:</span>
+            {data.priority.toLowerCase()}
+          </p>
           <p>{data.noteText}</p>
           <div>
             <span>A</span>

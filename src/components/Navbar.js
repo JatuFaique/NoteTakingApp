@@ -15,7 +15,12 @@ function Navbar() {
               className={({ isActive }) => (isActive ? "addAct" : "")}
               to="/notes"
             >
-              <div class="nav-main-heading ">Notes</div>
+              <div class="nav-main-heading ">
+                <span>
+                  <i class="fa-solid fa-bullseye"></i>
+                </span>
+                Notes
+              </div>
             </NavLink>
           </li>
 
@@ -24,7 +29,12 @@ function Navbar() {
               to="/trash"
               className={({ isActive }) => (isActive ? "addAct" : "")}
             >
-              <div class="nav-main-heading">Trash</div>
+              <div class="nav-main-heading">
+                <span>
+                  <i class="fa-solid fa-bullseye"></i>
+                </span>
+                Trash
+              </div>
             </NavLink>
           </li>
           <li class="component-links">
@@ -32,7 +42,12 @@ function Navbar() {
               to="/labels"
               className={({ isActive }) => (isActive ? "addAct" : "")}
             >
-              <div class="nav-main-heading">Labels</div>
+              <div class="nav-main-heading">
+                <span>
+                  <i class="fa-solid fa-bullseye"></i>
+                </span>
+                Labels
+              </div>
             </NavLink>
           </li>
           <li class="component-links">
@@ -40,7 +55,12 @@ function Navbar() {
               to="/archives"
               className={({ isActive }) => (isActive ? "addAct" : "")}
             >
-              <div class="nav-main-heading">Archived</div>
+              <div class="nav-main-heading">
+                <span>
+                  <i class="fa-solid fa-bullseye"></i>
+                </span>
+                Archived
+              </div>
             </NavLink>
           </li>
         </ul>

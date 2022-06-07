@@ -11,10 +11,28 @@ function Labels() {
     <div className="contentbar">
       <div className="section__notes">
         <div className="notes__heading">Labels</div>
-        <div className="cards section__notes_cards">
-          {notesState.notes.map((item) => {
-            return <NoteCard data={item} />;
-          })}
+
+        <div className="cards label_a" style={{ fontSize: "0.6rem" }}>
+          <span style={{ fontSize: "1.2rem" }}>Home</span>
+          <div className="cards section__notes_cards">
+            {notesState.notes.map((item) => {
+              return <NoteCard data={item} />;
+            })}
+          </div>
+        </div>
+        <div className="cards label_a" style={{ fontSize: "0.6rem" }}>
+          <div className="cards section__notes_cards">
+            {notesState.notes.map((item) => {
+              return <NoteCard data={item} />;
+            })}
+          </div>
+        </div>
+        <div className="cards label_a" style={{ fontSize: "0.6rem" }}>
+          <div className="cards section__notes_cards">
+            {notesState.notes.map((item) => {
+              return <NoteCard data={item} />;
+            })}
+          </div>
         </div>
       </div>
     </div>

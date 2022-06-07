@@ -1,13 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "./Notes.css";
 import { useNotes } from "../Context/Notescontext";
 import NoteCard from "../components/NoteCard";
+import { useFilter } from "../Context/Filtercontext";
+import { sortByPriority } from "../utils/sortByPriority";
 
 function Notes() {
   const [notesState, notesDispatch] = useNotes();
   const [title, setTitle] = useState("");
   const [noteText, setNoteText] = useState("");
   const [color, setColor] = useState("white");
+  const [priority, setPriority] = useState("HIGH");
   const [tags, setTags] = useState([]);
   var today = new Date();
   var date =
@@ -22,6 +26,7 @@ function Notes() {
       date: dateTime,
       tags,
       color,
+      priority,
     };
 
     console.log("hi", note);
@@ -88,20 +93,35 @@ function Notes() {
     setColor(e.target.value);
   };
 
+  const handlePriority = (e) => {
+    console.log("pp", e.target.value);
+    setPriority(e.target.value);
+  };
+
+  const [filterState, filterDispatch] = useFilter();
+  const sortedByPriority = sortByPriority(
+    notesState.notes,
+    filterState.filterByPriority
+  );
+
   return (
     <div className="contentbar">
       <div className="section__notes">
-        <div className="homePage__intro">
-          Get Started with notes app
-          <h3 className="">
-            Your notes taking app, has features such as Archive, Labels
-          </h3>
-        </div>
         <div className="notes__heading">
-          <h1 className="p-1">Note</h1>
-          <h3 className="p-1">Create your notes here!</h3>
+          <label>
+            <h2>
+              The Office <em>Notes</em>
+            </h2>
+          </label>
+          {/* <h3 className="p-1">Create your notes here!</h3> */}
         </div>
-        <div className="section__notes__input">
+        <div
+          className="section__notes__input"
+          style={{
+            padding: "1.2rem",
+            boxShadow: "0px 4px 25px -4px rgb(196 196 196)",
+          }}
+        >
           <form
             className="notes__input"
             onSubmit={(e) => {
@@ -109,6 +129,7 @@ function Notes() {
             }}
           >
             <input
+              required
               type="text"
               placeholder="Enter title"
               value={title}
@@ -125,59 +146,79 @@ function Notes() {
                 setNoteText(e.target.value);
               }}
             ></textarea>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <label>Home</label>
-              <input type="checkbox" name="Home" onChange={handleTags}></input>
-              <label>office</label>
-              <input
-                type="checkbox"
-                name="Office"
-                onChange={handleTags}
-              ></input>
-              <label>School</label>
-              <input
-                type="checkbox"
-                name="School"
-                onChange={handleTags}
-              ></input>
+            <div className="tags">
+              <label>
+                <input
+                  type="checkbox"
+                  name="Home"
+                  onChange={handleTags}
+                ></input>
+                🎓Home
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="Office"
+                  onChange={handleTags}
+                ></input>
+                👔Office
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="School"
+                  onChange={handleTags}
+                ></input>
+                📏School
+              </label>
+              <span>
+                <select onChange={(e) => handlePriority(e)} value={priority}>
+                  <option name="priority" value="HIGH">
+                    HIGH
+                  </option>
+                  <option name="priority" value="MEDIUM">
+                    MEDIUM
+                  </option>
+                  <option name="priority" value="LOW">
+                    LOW
+                  </option>
+                </select>
+              </span>
             </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <label>Blue</label>
-              <input
-                type="radio"
-                id="color"
-                name="color"
-                value="blue"
-                onChange={handlecolor}
-              ></input>
-              <label>Red</label>
-              <input
-                type="radio"
-                id="color"
-                name="color"
-                value="red"
-                onChange={handlecolor}
-              ></input>
-              <label>Green</label>
-              <input
-                type="radio"
-                id="color"
-                name="color"
-                value="green"
-                onChange={handlecolor}
-              ></input>
+
+            <div className="colors">
+              <label className="color_blue">
+                <span>Blue</span>
+                <input
+                  type="radio"
+                  id="color"
+                  name="color"
+                  value="color_blue"
+                  onChange={handlecolor}
+                ></input>
+              </label>
+
+              <label className="color_red">
+                <span>Red</span>
+                <input
+                  type="radio"
+                  id="color"
+                  name="color"
+                  value="color_red"
+                  onChange={handlecolor}
+                ></input>
+              </label>
+
+              <label className="color_green">
+                <span>Green</span>
+                <input
+                  type="radio"
+                  id="color"
+                  name="color"
+                  value="color_green"
+                  onChange={handlecolor}
+                ></input>
+              </label>
             </div>
 
             <button className="btn_submit btn-prim" type="submit">
@@ -185,6 +226,27 @@ function Notes() {
               Create
             </button>
           </form>
+        </div>
+        <div className="cards">
+          <p>Filter</p>
+          <span>
+            <select
+              onChange={(e) => {
+                filterDispatch({
+                  type: "FILTER_BY_HIGHTOLOW",
+                  payload: e.target.value,
+                });
+              }}
+              value={filterState.filterByPriority}
+            >
+              <option name="priority" value="HIGH_TO_LOW">
+                HIGH to Low
+              </option>
+              <option name="priority" value="LOW_TO_HIGH">
+                Low to High
+              </option>
+            </select>
+          </span>
         </div>
         <div className="cards">
           {notesState.notes.map((note) => {
