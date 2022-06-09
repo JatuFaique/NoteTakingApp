@@ -1,4 +1,4 @@
-label {
+.section__notes label {
   padding: 6px;
   text-align: center;
   border-radius: 5px;
@@ -67,4 +67,25 @@ label {
 .notes__heading h2 {
   font-weight: 100;
   font-size: 1.9rem;
+}
+
+/* Trash Notes */
+
+.trash__note {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.label_cards .title_home {
+  padding: 4px;
+  background-color: var(--fulvous-light);
+}
+
+.label_cards .title_office {
+  padding: 4px;
+  background-color: var(--bright-navy-blue);
+}
+.label_cards .title_school {
+  padding: 4px;
+  background-color: var(--hookers-green);
 }

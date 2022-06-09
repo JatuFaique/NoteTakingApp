@@ -7,31 +7,65 @@ import { useNotes } from "../Context/Notescontext";
 function Labels() {
   const [notesState, notesDispatch] = useNotes();
 
+  const HomeNotes = notesState.notes?.filter((note) => {
+    return note.tags.includes("Home");
+  });
+  const OfficeNotes = notesState.notes?.filter((note) => {
+    return note.tags.includes("Office");
+  });
+  const SchoolNotes = notesState.notes?.filter((note) => {
+    return note.tags.includes("School");
+  });
+
   return (
     <div className="contentbar">
       <div className="section__notes">
-        <div className="notes__heading">Labels</div>
-
-        <div className="cards label_a" style={{ fontSize: "0.6rem" }}>
-          <span style={{ fontSize: "1.2rem" }}>Home</span>
+        <div className="cards label_cards" style={{ fontSize: "0.6rem" }}>
+          <span className="title_home" style={{ fontSize: "1.2rem" }}>
+            #Home
+          </span>
           <div className="cards section__notes_cards">
-            {notesState.notes.map((item) => {
-              return <NoteCard data={item} />;
-            })}
+            {HomeNotes.length !== 0 ? (
+              HomeNotes?.map((item) => {
+                return <NoteCard data={item} />;
+              })
+            ) : (
+              <>
+                <h1>No Notes here...</h1>
+              </>
+            )}
           </div>
         </div>
-        <div className="cards label_a" style={{ fontSize: "0.6rem" }}>
+        <div className="cards label_cards" style={{ fontSize: "0.6rem" }}>
+          <span className="title_office" style={{ fontSize: "1.2rem" }}>
+            #Office
+          </span>
           <div className="cards section__notes_cards">
-            {notesState.notes.map((item) => {
-              return <NoteCard data={item} />;
-            })}
+            {OfficeNotes.length !== 0 ? (
+              OfficeNotes?.map((item) => {
+                return <NoteCard data={item} />;
+              })
+            ) : (
+              <>
+                <h1>No Notes here...</h1>
+              </>
+            )}
           </div>
         </div>
-        <div className="cards label_a" style={{ fontSize: "0.6rem" }}>
+        <div className="cards label_cards" style={{ fontSize: "0.6rem" }}>
+          <span className="title_school" style={{ fontSize: "1.2rem" }}>
+            #School
+          </span>
           <div className="cards section__notes_cards">
-            {notesState.notes.map((item) => {
-              return <NoteCard data={item} />;
-            })}
+            {SchoolNotes.length !== 0 ? (
+              SchoolNotes?.map((item) => {
+                return <NoteCard data={item} />;
+              })
+            ) : (
+              <>
+                <h1>No Notes here...</h1>
+              </>
+            )}
           </div>
         </div>
       </div>
