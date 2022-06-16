@@ -1,10 +1,13 @@
 import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { useNotes } from "../Context/Notescontext";
+import EditeNoteModal from "./EditeNoteModal";
 import "./NoteCard.css";
 
 function NoteCard({ data, isArchived, isTrashed }) {
   const [notesState, notesDispatch] = useNotes();
+  const [editNoteModal, setEditNoteModal] = useState(false);
 
   const handleArchive = async (data) => {
     try {
@@ -173,6 +176,10 @@ function NoteCard({ data, isArchived, isTrashed }) {
         <>
           <button onClick={() => handleRestoreArchive(data)}> Restore </button>
           <button onClick={() => handleDeleteArchive(data)}> Delete </button>
+          <i
+            onClick={() => setEditNoteModal(true)}
+            class="fa-solid fa-ellipsis-vertical"
+          ></i>
         </>
       );
     } else if (isTrashed) {
@@ -180,6 +187,10 @@ function NoteCard({ data, isArchived, isTrashed }) {
         <>
           <button onClick={() => handleDeleteTrash(data)}> Delete </button>
           <button onClick={() => handleRestoreTrash(data)}>Restore</button>
+          <i
+            onClick={() => setEditNoteModal(true)}
+            class="fa-solid fa-ellipsis-vertical"
+          ></i>
         </>
       );
     } else {
@@ -187,9 +198,17 @@ function NoteCard({ data, isArchived, isTrashed }) {
         <>
           <button onClick={() => handleArchive(data)}> Archive </button>
           <button onClick={() => handleTrash(data)}> Delete </button>
+          <i
+            onClick={() => setEditNoteModal(true)}
+            class="fa-solid fa-ellipsis-vertical"
+          ></i>
         </>
       );
     }
+  };
+
+  const modalHandler = () => {
+    setEditNoteModal(false);
   };
 
   return (
@@ -204,15 +223,27 @@ function NoteCard({ data, isArchived, isTrashed }) {
             <span>Priority:</span>
             {data.priority.toLowerCase()}
           </p>
-          <p>{data.noteText}</p>
-          <div>
-            <span>A</span>
-            <span>A</span>
-            <span>A</span>
+          <div dangerouslySetInnerHTML={{ __html: data.noteText }}></div>
+          <div className="label_cards">
+            {data.tags?.map((item, index) => {
+              return <span className={`title_${item}`}>#{item}</span>;
+            })}
+
+            {/* <span>A</span>
+            <span>A</span> */}
           </div>
         </div>
       </div>
       <div class="btn-list">{getListofButtons()}</div>
+      {editNoteModal ? (
+        <>
+          <div className="overlay">
+            <EditeNoteModal data={data} modalHandler={modalHandler} />
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

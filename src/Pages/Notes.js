@@ -1,12 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Notes.css";
 import { useNotes } from "../Context/Notescontext";
 import NoteCard from "../components/NoteCard";
 import { useFilter } from "../Context/Filtercontext";
 import { sortByPriority } from "../utils/sortByPriority";
+import JoditEditor from "jodit-react";
+import { sortByRecent } from "../utils/sortByRecent";
 
 function Notes() {
+  const reference = useRef(null);
   const [notesState, notesDispatch] = useNotes();
   const [title, setTitle] = useState("");
   const [noteText, setNoteText] = useState("");
@@ -18,9 +21,14 @@ function Notes() {
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
   var dateTime = date;
 
+  const config = {
+    readonly: false,
+  };
+
   const handleOnFormSubmit = (e) => {
     e.preventDefault();
     let note = {
+      createdTime: new Date().getTime(),
       title,
       noteText,
       date: dateTime,
@@ -104,6 +112,11 @@ function Notes() {
     filterState.filterByPriority
   );
 
+  const sortedByRecent = sortByRecent(
+    sortedByPriority,
+    filterState.filterByRecent
+  );
+
   return (
     <div className="contentbar">
       <div className="section__notes">
@@ -137,7 +150,14 @@ function Notes() {
                 setTitle(e.target.value);
               }}
             ></input>
-            <textarea
+            <JoditEditor
+              ref={reference}
+              value={noteText}
+              config={config}
+              tabIndex={1}
+              onBlur={(value) => setNoteText(value)}
+            />
+            {/* <textarea
               rows="5"
               cols="60"
               name="description"
@@ -145,7 +165,7 @@ function Notes() {
               onChange={(e) => {
                 setNoteText(e.target.value);
               }}
-            ></textarea>
+            ></textarea> */}
             <div className="tags">
               <label>
                 <input
@@ -246,10 +266,26 @@ function Notes() {
                 Low to High
               </option>
             </select>
+            <select
+              onChange={(e) => {
+                filterDispatch({
+                  type: "FILTER_BY_RECENT",
+                  payload: e.target.value,
+                });
+              }}
+              value={filterState.filterByRecent}
+            >
+              <option name="priority" value="RECENT_FIRST">
+                RECENT_FIRST
+              </option>
+              <option name="priority" value="OLDEST_FIRST">
+                OLDEST_FIRST
+              </option>
+            </select>
           </span>
         </div>
         <div className="cards">
-          {notesState.notes.map((note) => {
+          {sortedByRecent?.map((note) => {
             return <NoteCard data={note} />;
           })}
         </div>

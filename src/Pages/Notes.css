@@ -76,16 +76,58 @@
   text-align: center;
 }
 
-.label_cards .title_home {
+.label_cards .title_Home {
   padding: 4px;
   background-color: var(--fulvous-light);
 }
 
-.label_cards .title_office {
+.label_cards .title_Office {
   padding: 4px;
   background-color: var(--bright-navy-blue);
 }
-.label_cards .title_school {
+.label_cards .title_School {
   padding: 4px;
   background-color: var(--hookers-green);
+}
+
+.overlay {
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  transform: translate(0);
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 0;
+}
+
+.mod {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #00000881;
+}
+
+.sec-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  color: #ffffff;
+}
+
+.sec-body {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  background-color: #ffffff;
+}
+
+.sec-footer {
+  display: flex;
+  background-color: #ffffff;
+  flex-direction: row;
+  width: auto;
+  justify-content: flex-end;
+  gap: 8px;
 }

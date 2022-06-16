@@ -21,7 +21,7 @@ function Labels() {
     <div className="contentbar">
       <div className="section__notes">
         <div className="cards label_cards" style={{ fontSize: "0.6rem" }}>
-          <span className="title_home" style={{ fontSize: "1.2rem" }}>
+          <span className="title_Home" style={{ fontSize: "1.2rem" }}>
             #Home
           </span>
           <div className="cards section__notes_cards">
@@ -37,7 +37,7 @@ function Labels() {
           </div>
         </div>
         <div className="cards label_cards" style={{ fontSize: "0.6rem" }}>
-          <span className="title_office" style={{ fontSize: "1.2rem" }}>
+          <span className="title_Office" style={{ fontSize: "1.2rem" }}>
             #Office
           </span>
           <div className="cards section__notes_cards">
@@ -53,7 +53,7 @@ function Labels() {
           </div>
         </div>
         <div className="cards label_cards" style={{ fontSize: "0.6rem" }}>
-          <span className="title_school" style={{ fontSize: "1.2rem" }}>
+          <span className="title_School" style={{ fontSize: "1.2rem" }}>
             #School
           </span>
           <div className="cards section__notes_cards">

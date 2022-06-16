@@ -138,6 +138,7 @@ body {
 }
 
 .contentbar {
+  position: relative;
   background-color: #ffffff;
   min-height: 100vh;
 }
