@@ -117,6 +117,31 @@ function Notes() {
     filterState.filterByRecent
   );
 
+  const getAllNotes = async () => {
+    try {
+      const encT = localStorage.getItem("token");
+      console.log(encT);
+      const res = await axios.get("/api/notes", {
+        headers: {
+          authorization: encT,
+        },
+      });
+      if (res.status === 200 || res.status === 201) {
+        console.log("resp = ", res.data);
+        notesDispatch({
+          type: "SUCCESS_ADD_TO_NOTES",
+          payload: res.data.notes,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getAllNotes();
+  }, []);
+
   return (
     <div className="contentbar">
       <div className="section__notes">

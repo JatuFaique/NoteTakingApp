@@ -40,6 +40,15 @@ function authReducer(state, action) {
         userDetail: action.payload.email,
       };
 
+    case "VALIDATION_ERROR":
+      return {
+        errorMessage: action.payload,
+      };
+    case "LOGOUT":
+      return {
+        login: false,
+      };
+
     default:
       return state;
   }

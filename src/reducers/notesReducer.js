@@ -79,6 +79,13 @@ function notesReducer(state, action) {
         notes: action.payload.notes,
       };
 
+    case "CLEAR_NOTES":
+      return {
+        notes: [],
+        trash: [],
+        archives: [],
+      };
+
     default:
       return state;
   }

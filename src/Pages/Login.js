@@ -25,6 +25,24 @@ function Login() {
       authDispatch({
         type: "REQUEST_SIGNUP",
       });
+
+      if (getValues.password.length < 6) {
+        authDispatch({
+          type: "VALIDATION_ERROR",
+          payload: "PASSWORD TOO SHOW",
+        });
+        throw "Error";
+      }
+      let re = /\S+@\S+\.\S+/;
+      // console.log("heyyyy", re.test(getValues.email));
+      if (!re.test(getValues.email)) {
+        console.log("hhashha");
+        authDispatch({
+          type: "VALIDATION_ERROR",
+          payload: "Please type email correctly",
+        });
+        throw "Error";
+      }
       const res = await axios.post("/api/auth/signup", getValues);
       if (res.status == 200 || res.status == 201) {
         localStorage.setItem("token", res.data.encodedToken);
@@ -49,6 +67,23 @@ function Login() {
     const getLoginValues = { email, password };
     console.log(getLoginValues.email, getLoginValues.password);
     try {
+      if (getLoginValues.password.length < 6) {
+        authDispatch({
+          type: "VALIDATION_ERROR",
+          payload: "PASSWORD TOO SHOW",
+        });
+        throw "Error";
+      }
+      let re = /\S+@\S+\.\S+/;
+      // console.log("heyyyy", re.test(getLoginValues.email));
+      if (!re.test(getLoginValues.email)) {
+        console.log("hhashha");
+        authDispatch({
+          type: "VALIDATION_ERROR",
+          payload: "Please type email correctly",
+        });
+        throw "Error";
+      }
       const res = await axios.post("/api/auth/login", {
         email: getLoginValues.email,
         password: getLoginValues.password,
@@ -179,6 +214,13 @@ function Login() {
                         <label for="password-field" class="placeholder">
                           Password
                         </label>
+                        {authState.errorMessage ? (
+                          <span class="error-message" aria-live="polite">
+                            {authState.errorMessage}
+                          </span>
+                        ) : (
+                          <></>
+                        )}
                       </div>
                     </section>
 
@@ -234,6 +276,13 @@ function Login() {
                         <label for="password-field" class="placeholder">
                           Password
                         </label>
+                        {authState.errorMessage ? (
+                          <span class="error-message" aria-live="polite">
+                            {authState.errorMessage}
+                          </span>
+                        ) : (
+                          <></>
+                        )}
                       </div>
                     </section>
 

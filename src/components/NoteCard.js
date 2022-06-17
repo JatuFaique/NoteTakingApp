@@ -176,10 +176,6 @@ function NoteCard({ data, isArchived, isTrashed }) {
         <>
           <button onClick={() => handleRestoreArchive(data)}> Restore </button>
           <button onClick={() => handleDeleteArchive(data)}> Delete </button>
-          <i
-            onClick={() => setEditNoteModal(true)}
-            class="fa-solid fa-ellipsis-vertical"
-          ></i>
         </>
       );
     } else if (isTrashed) {
@@ -187,10 +183,6 @@ function NoteCard({ data, isArchived, isTrashed }) {
         <>
           <button onClick={() => handleDeleteTrash(data)}> Delete </button>
           <button onClick={() => handleRestoreTrash(data)}>Restore</button>
-          <i
-            onClick={() => setEditNoteModal(true)}
-            class="fa-solid fa-ellipsis-vertical"
-          ></i>
         </>
       );
     } else {
