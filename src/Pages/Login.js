@@ -59,6 +59,9 @@ function Login() {
       }
     } catch (error) {
       console.log(error);
+      authDispatch({
+        type: "FAILED_LOGIN",
+      });
       setIsError(error.response.data.errors);
     }
   };
@@ -103,6 +106,9 @@ function Login() {
       }
     } catch (error) {
       console.log(error.response);
+      authDispatch({
+        type: "FAILED_LOGIN",
+      });
       setIsError(error.response.data.errors);
     }
   };
