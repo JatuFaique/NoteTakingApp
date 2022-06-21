@@ -1,5 +1,7 @@
-TEMP DEV 1- Changes as req for roc8
+TEMP DEV
 
-Included a recent note feat
-Added toast and alerts
-Logout feature
+Refactored Layout and redesign
+Added Authentication
+Added Archive / Trash
+Sort Reducers
+Label redesign and filter
